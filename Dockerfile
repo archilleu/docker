@@ -20,15 +20,13 @@ ADD .ycm_extra_conf.py /root/.ycm_extra_conf.py
 RUN apt install -yyq git
 RUN apt install -yyq g++ gdb
 RUN apt install -yyq cmake
-RUN apt install -yyq python3-dev
-RUN apt install -yyq vim-nox
-#RUN apt install -yyq llvm clang libclang-dev libboost-all-dev
+RUN apt install -yyq python-dev python3-dev
+RUN apt install -yyq vim-nox-py2
 
 RUN git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 RUN git clone https://github.com/Valloric/YouCompleteMe.git /root/.vim/bundle/YouCompleteMe
 WORKDIR /root/.vim/bundle/YouCompleteMe
 RUN git submodule update --init --recursive
-RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN /root/.vim/bundle/YouCompleteMe/install.py --clang-completer
 
 #WORKDIR /root
