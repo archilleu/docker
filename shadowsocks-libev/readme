@@ -1,0 +1,2 @@
+#command
+docker run -d -p 8080:8080 --name shadowsocks archilleu/shadowsocks-libev /usr/bin/ss-server -c /etc/shadowsocks-libev/config.json
