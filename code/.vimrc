@@ -4,7 +4,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"nnoremap <A-Up> ddP
+""nnoremap <A-Up> ddP
 "nnoremap <A-Down> ddp
 nmap <A-Down> mz:m+<cr>`z
 nmap <A-Up> mz:m-2<cr>`z
@@ -18,7 +18,7 @@ vmap <A-Up> :m'<-2<cr>`>my`<mzgv`yo`z</cr>
 "代码折叠
 set foldmethod=indent
 set foldlevel=99
-"nnoremap <space> za
+nnoremap <space> za
 
 set number "设置行号"
 set tabstop=4 "让一个tab等于4个空格
@@ -51,7 +51,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 "filesystem
 Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlvim/ctrlp.vim' 
 Plugin 'tacahiroy/ctrlp-funky'
 
 "html
@@ -61,23 +60,23 @@ Plugin 'suan/vim-instant-markdown'
 Plugin 'nelstrom/vim-markdown-preview'
 "python sytax checker
 Plugin 'nvie/vim-flake8'
-"Plugin 'vim-scripts/Pydiction'
+""Plugin 'vim-scripts/Pydiction'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'scrooloose/syntastic'
 
 "auto-completion stuff
-"Plugin 'klen/python-mode'
-"Plugin 'Valloric/YouCompleteMe'
+""Plugin 'klen/python-mode'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'klen/rope-vim'
 "Plugin 'davidhalter/jedi-vim'
-
-""code folding
+"
+"code folding
 Plugin 'tmhedberg/SimpylFold'
 
 "Colors!!!
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'jnurmine/Zenburn'
-
+"
 "tagbar
 Plugin 'majutsushi/tagbar'
 
@@ -95,50 +94,19 @@ filetype plugin indent on    " enables filetype detection
 let g:SimpylFold_docstring_preview = 1
 
 "show indent
-"let g:indent_guides_auto_colors = 0
-"set background=light
-"let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+set background=light
+let g:indent_guides_enable_on_vim_startup = 1
 
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=red ctermbg=3
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+""autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
 "YCM配置
 "让YouCompleteMe同时利用原来的ctags
 let g:ycm_collect_identifiers_from_tag_files = 1
-let g:ycm_server_python_interpreter='/usr/bin/python'
-let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
-
 "tags设置
 set tags+=~/.vim/tags/systags
 
-set completeopt=longest,menu	"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif	"离开插入模式后自动关闭预览窗口
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"	"回车即选中当前项
-"上下左右键的行为 会显示其他信息
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" :"\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-
-"youcompleteme  默认tab  s-tab 和自动补全冲突
-"let g:ycm_key_list_select_completion=['<c-n>']
-let g:ycm_key_list_select_completion = ['<Down>']
-let g:ycm_key_list_previous_completion=['<c-p>']
-let g:ycm_key_list_previous_completion = ['<Up>']
-let g:ycm_confirm_extra_conf=0 "关闭加载.ycm_extra_conf.py提示
-
-let g:ycm_collect_identifiers_from_tags_files=1	" 开启 YCM
-"基于标签引擎
-let g:ycm_min_num_of_chars_for_completion=2	"
-"从第2个键入字符就开始罗列匹配项
-let g:ycm_cache_omnifunc=0	" 禁止缓存匹配项,每次都重新生成匹配项
-let g:ycm_seed_identifiers_with_syntax=1	" 语法关键字补全
-""在注释输入中也能补全
-let g:ycm_complete_in_comments = 1
-"在字符串输入中也能补全
-let g:ycm_complete_in_strings = 1
-"注释和字符串中的文字也会被收入补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_min_num_of_chars_for_completion=1
 let g:ycm_key_list_select_completion=['<Down>']
 let g:ycm_key_list_previous_completion=['<Up>']
@@ -155,7 +123,7 @@ let g:syntastic_warning_symbol = '?'
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_highlighting = 0
 "let g:syntastic_python_checker='flake8,pyflakes,pep8,pylint'
-let g:syntastic_python_checkers=['pyflakes']
+"let g:syntastic_python_checkers=['pyflakes']
 "highlight SyntasticErrorSign guifg=white guibg=black
 
 let g:syntastic_cpp_include_dirs = ['/usr/include/']
@@ -164,13 +132,14 @@ let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libstdc++'
 let g:syntastic_enable_balloons = 1 "whether to show balloons
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 " For full syntax highlighting:
-let python_highlight_all=1
-syntax on
+ let python_highlight_all=1
+ syntax on
 
-" make backspaces more powerfull
-set backspace=indent,eol,start
+" " make backspaces more powerfull
+ set backspace=indent,eol,start
 
 "NERDTree设置
 map <F3> :NERDTree<CR> 打开目录树
@@ -182,13 +151,15 @@ let NERDTreeIgnore=['\~$', '\w*.o$', '\w*.a$']
 
 "MiniBufExplorer 设置
 let g:miniBufExplMaxSize = 2
-let g:miniBufExplMapWindowNavArrows = 1 "是用<C-箭头键>切换到上下左右窗口中去
+let g:miniBufExplMapWindowNavArrows = 1
+"是用<C-箭头键>切换到上下左右窗口中去
 
 "tagbar set
 let g:tagbar_ctags_bin='ctags'            "ctags程序的路径
 let g:tagbar_width=30                    "窗口宽度的设置
 map <F4> :Tagbar<CR>
-"autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()  "如果是c语言的程序的话，tagbar自动开启
+autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
+"如果是c语言的程序的话，tagbar自动开启
 
 "airline
 set laststatus=2
@@ -206,9 +177,9 @@ let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 map <leader>f :CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
-    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
-    \ }
+   	\ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+	\ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+      	\ }
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_height=15
@@ -218,75 +189,13 @@ let g:ctrlp_follow_symlinks=1
 
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+nnoremap <Leader>fU :execute 'CtrlPFunky ' .expand('<cword>')<Cr>
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_extensions = ['funky']
 
 "Complile
 map <F7> :call CompileGCC()<CR>
 func!CompileGCC()
-    exec "w"
-    exec "make debug=y"
+	exec "w"
+	exec "make debug=y"
 endfunc
-
-inoremap <F6> //---------------------------------------------------------------------------
-nnoremap <C-F6> :call setline('.', "//---------------------------------------------------------------------------")<CR>'s
-"进行版权声明的设置
-"添加或更新头
-"map <F8> :call TitleDet()<cr>'s
-"function AddTitle()
-"    call append(0,"/*=============================================================================")
-"    call append(1,"#")
-"    call append(2,"# Author: chenjianyu")
-"    call append(3,"#")
-"    call append(4,"# QQ : 313720180")
-"    call append(5,"#")
-"    call append(6,"# Last modified: ".strftime("%Y-%m-%d %H:%M"))
-"    call append(7,"#")
-"    call append(8,"# Filename: ".expand("%:t"))
-"    call append(9,"#")
-"    call append(10,"# Description: ")
-"    call append(11,"#")
-"    call append(12,"=============================================================================*/")
-"    echohl WarningMsg | echo "Successful in adding the copyright." | echohl None
-"endf
-""更新最近修改时间和文件名
-"function UpdateTitle()
-"    normal m'
-"    execute '/# *Last modified:/s@:.*$@\=strftime(": %Y-%m-%d %H:%M")@'
-"    normal ''
-"    normal mk
-"    execute '/# *Filename:/s@:.*$@\=":\t".expand("%:t")@'
-"    execute "noh"
-"    normal 'k
-"    echohl WarningMsg | echo "Successful in updating the copy right." | echohl None
-"endfunction
-""判断前10行代码里面，是否有Last modified这个单词，
-""如果没有的话，代表没有添加过作者信息，需要新添加；
-""如果有的话，那么只需要更新即可
-"function TitleDet()
-"    let n=1
-"    "默认为添加
-"    while n < 10
-"        let line = getline(n)
-"        if line =~ '^\#\s*\S*Last\smodified:\S*.*$'
-"            call UpdateTitle()
-"            return
-"        endif
-"        let n = n + 1
-"    endwhile
-"    call AddTitle()
-"endfunction
-
-"========================================================================
-"taglist设置
-"let Tlist_Show_One_File=1    " 只展示一个文件的taglist
-"let Tlist_Exit_OnlyWindow=1  " 当taglist是最后以个窗口时自动退出
-"let Tlist_Use_Right_Window=1 " 在右边显示taglist窗口
-"let Tlist_Sort_Type="name"   " tag按名字排序
-"let Tlist_Auto_Open=1 	"自动打开
-"map <C-F11> :TlistToggle<CR>
-
-
-
-
