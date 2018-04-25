@@ -1,0 +1,1 @@
+ docker run -i -t  -p 8022:22 --name code code /bin/bash
